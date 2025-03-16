@@ -33,7 +33,7 @@ A modern, responsive e-commerce frontend application built with React, TypeScrip
 - Loading states and error handling
 - Form validation with helpful error messages
 
-## Technologies Used  #Demo (Images of the Website)
+## Technologies Used  
 
 - **React 18** - Frontend library
 - **TypeScript** - Type safety and better developer experience
@@ -44,7 +44,14 @@ A modern, responsive e-commerce frontend application built with React, TypeScrip
 - **Yup** - Form validation
 - **Vite** - Build tool and development server
 
-##Demo (Images of the Website)  #Demo (Images of the Website)
+### Demo (Images of the Website)
+<img width="1429" alt="Screenshot 2025-03-16 at 6 13 52 PM" src="https://github.com/user-attachments/assets/f84bfd09-c002-4f95-a695-0cb2022f75da" />
+<img width="1118" alt="Screenshot 2025-03-16 at 6 14 39 PM" src="https://github.com/user-attachments/assets/8c00a028-0fc4-4c33-9229-b48286568c9e" />
+<img width="1112" alt="Screenshot 2025-03-16 at 6 14 44 PM" src="https://github.com/user-attachments/assets/aa7fdc36-5c3f-43b7-867d-6530ce03218a" />
+<img width="1114" alt="Screenshot 2025-03-16 at 6 14 49 PM" src="https://github.com/user-attachments/assets/5e2e55bc-f387-4b55-96b7-073004f72721" />
+
+
+
 
 ## Getting Started
 
