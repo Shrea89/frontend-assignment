@@ -96,22 +96,22 @@ const Login: React.FC = () => {
             sx={{
               mb: 3,
               fontWeight: 600,
-              color: theme.palette.mode === 'light' ? '#000000' : '#ffffff',
+              color: theme.palette.mode === 'light' ? '#FFFFF0' : '#ffffff',
               textAlign: 'center',
               textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
             }}
           >
-            Welcome Back
+            Welcome to Bazaar
           </Typography>
           <Typography
             variant="body1"
             sx={{
               mb: 4,
-              color: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)',
+              color: theme.palette.mode === 'light' ? '#FFFFF0' : 'rgba(255, 255, 255, 0.7)',
               textAlign: 'center',
             }}
           >
-            Please sign in to continue
+            Sign in to your account
           </Typography>
 
           <Box
@@ -138,7 +138,7 @@ const Login: React.FC = () => {
               helperText={formik.touched.email && formik.errors.email}
               sx={{
                 backgroundColor: theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.9)'
+                  ? 'transparent'
                   : 'rgba(0, 0, 0, 0.2)',
                 borderRadius: 1,
                 '& .MuiOutlinedInput-root': {
@@ -148,6 +148,15 @@ const Login: React.FC = () => {
                   '&:hover fieldset': {
                     borderColor: 'rgba(255, 255, 255, 0.5)',
                   },
+                },
+                '& .MuiInputLabel-root': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : 'rgba(255, 255, 255, 0.7)',
+                  '&.Mui-focused': {
+                    color: theme.palette.primary.main,
+                  },
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : '#ffffff',
                 },
               }}
             />
@@ -169,7 +178,7 @@ const Login: React.FC = () => {
                       aria-label="toggle password visibility"
                       onClick={handleTogglePasswordVisibility}
                       edge="end"
-                      sx={{ color: theme.palette.mode === 'light' ? '#B84000' : '#ffffff' }}
+                      sx={{ color: theme.palette.mode === 'light' ? '#FFFFF0' : '#ffffff' }}
                     >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
@@ -178,7 +187,7 @@ const Login: React.FC = () => {
               }}
               sx={{
                 backgroundColor: theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.9)'
+                  ? 'transparent'
                   : 'rgba(0, 0, 0, 0.2)',
                 borderRadius: 1,
                 '& .MuiOutlinedInput-root': {
@@ -188,6 +197,15 @@ const Login: React.FC = () => {
                   '&:hover fieldset': {
                     borderColor: 'rgba(255, 255, 255, 0.5)',
                   },
+                },
+                '& .MuiInputLabel-root': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : 'rgba(255, 255, 255, 0.7)',
+                  '&.Mui-focused': {
+                    color: theme.palette.primary.main,
+                  },
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : '#ffffff',
                 },
               }}
             />
@@ -222,7 +240,7 @@ const Login: React.FC = () => {
                 mt: 2,
               }}
             >
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color={theme.palette.mode === 'light' ? '#FFFFF0' : 'text.secondary'}>
                 Don't have an account?{' '}
               </Typography>
               <Link
@@ -232,7 +250,7 @@ const Login: React.FC = () => {
                   ml: 1,
                   fontWeight: 600,
                   textDecoration: 'none',
-                  color: theme.palette.mode === 'light' ? '#000000' : 'primary.main',
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : 'primary.main',
                   '&:hover': {
                     textDecoration: 'underline',
                   },

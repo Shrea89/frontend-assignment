@@ -22,22 +22,17 @@ import { RootState } from '../../store';
 import backgroundImage from '../../assets/shop4.png';
 
 const validationSchema = Yup.object({
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
   firstName: Yup.string()
     .min(2, 'First name must be at least 2 characters')
     .required('First name is required'),
   lastName: Yup.string()
     .min(2, 'Last name must be at least 2 characters')
     .required('Last name is required'),
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('Email is required'),
   password: Yup.string()
-    .min(8, 'Password must be at least 8 characters')
-    .max(16, 'Password must be less than 16 characters')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
-      'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
-    )
+    .min(6, 'Password must be at least 6 characters')
     .required('Password is required'),
 });
 
@@ -54,9 +49,9 @@ const SignUp: React.FC = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
       firstName: '',
       lastName: '',
+      email: '',
       password: '',
     },
     validationSchema,
@@ -104,22 +99,22 @@ const SignUp: React.FC = () => {
             sx={{
               mb: 3,
               fontWeight: 600,
-              color: theme.palette.mode === 'light' ? '#000000' : '#ffffff',
+              color: theme.palette.mode === 'light' ? '#FFFFF0' : '#ffffff',
               textAlign: 'center',
               textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
             }}
           >
-            Create Account
+            Join Bazaar
           </Typography>
           <Typography
             variant="body1"
             sx={{
               mb: 4,
-              color: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)',
+              color: theme.palette.mode === 'light' ? '#FFFFF0' : 'rgba(255, 255, 255, 0.7)',
               textAlign: 'center',
             }}
           >
-            Please fill in your details
+            Create your account today
           </Typography>
 
           <Box
@@ -137,16 +132,16 @@ const SignUp: React.FC = () => {
             <TextField
               margin="normal"
               fullWidth
-              id="email"
-              name="email"
-              label="Email Address"
-              value={formik.values.email}
+              id="firstName"
+              name="firstName"
+              label="First Name"
+              value={formik.values.firstName}
               onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
+              error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+              helperText={formik.touched.firstName && formik.errors.firstName}
               sx={{
                 backgroundColor: theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.9)'
+                  ? 'transparent'
                   : 'rgba(0, 0, 0, 0.2)',
                 borderRadius: 1,
                 '& .MuiOutlinedInput-root': {
@@ -157,30 +152,14 @@ const SignUp: React.FC = () => {
                     borderColor: 'rgba(255, 255, 255, 0.5)',
                   },
                 },
-              }}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              id="firstName"
-              name="firstName"
-              label="First Name"
-              value={formik.values.firstName}
-              onChange={formik.handleChange}
-              error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-              helperText={formik.touched.firstName && formik.errors.firstName}
-              sx={{
-                backgroundColor: theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.9)'
-                  : 'rgba(0, 0, 0, 0.2)',
-                borderRadius: 1,
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: 'rgba(255, 255, 255, 0.3)',
+                '& .MuiInputLabel-root': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : 'rgba(255, 255, 255, 0.7)',
+                  '&.Mui-focused': {
+                    color: theme.palette.primary.main,
                   },
-                  '&:hover fieldset': {
-                    borderColor: 'rgba(255, 255, 255, 0.5)',
-                  },
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : '#ffffff',
                 },
               }}
             />
@@ -196,7 +175,7 @@ const SignUp: React.FC = () => {
               helperText={formik.touched.lastName && formik.errors.lastName}
               sx={{
                 backgroundColor: theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.9)'
+                  ? 'transparent'
                   : 'rgba(0, 0, 0, 0.2)',
                 borderRadius: 1,
                 '& .MuiOutlinedInput-root': {
@@ -206,6 +185,49 @@ const SignUp: React.FC = () => {
                   '&:hover fieldset': {
                     borderColor: 'rgba(255, 255, 255, 0.5)',
                   },
+                },
+                '& .MuiInputLabel-root': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : 'rgba(255, 255, 255, 0.7)',
+                  '&.Mui-focused': {
+                    color: theme.palette.primary.main,
+                  },
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : '#ffffff',
+                },
+              }}
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              id="email"
+              name="email"
+              label="Email Address"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+              sx={{
+                backgroundColor: theme.palette.mode === 'light'
+                  ? 'transparent'
+                  : 'rgba(0, 0, 0, 0.2)',
+                borderRadius: 1,
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'rgba(255, 255, 255, 0.3)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'rgba(255, 255, 255, 0.5)',
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : 'rgba(255, 255, 255, 0.7)',
+                  '&.Mui-focused': {
+                    color: theme.palette.primary.main,
+                  },
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : '#ffffff',
                 },
               }}
             />
@@ -227,7 +249,7 @@ const SignUp: React.FC = () => {
                       aria-label="toggle password visibility"
                       onClick={handleTogglePasswordVisibility}
                       edge="end"
-                      sx={{ color: theme.palette.mode === 'light' ? '#B84000' : '#ffffff' }}
+                      sx={{ color: theme.palette.mode === 'light' ? '#FFFFF0' : '#ffffff' }}
                     >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
@@ -236,7 +258,7 @@ const SignUp: React.FC = () => {
               }}
               sx={{
                 backgroundColor: theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.9)'
+                  ? 'transparent'
                   : 'rgba(0, 0, 0, 0.2)',
                 borderRadius: 1,
                 '& .MuiOutlinedInput-root': {
@@ -246,6 +268,15 @@ const SignUp: React.FC = () => {
                   '&:hover fieldset': {
                     borderColor: 'rgba(255, 255, 255, 0.5)',
                   },
+                },
+                '& .MuiInputLabel-root': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : 'rgba(255, 255, 255, 0.7)',
+                  '&.Mui-focused': {
+                    color: theme.palette.primary.main,
+                  },
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : '#ffffff',
                 },
               }}
             />
@@ -280,7 +311,7 @@ const SignUp: React.FC = () => {
                 mt: 2,
               }}
             >
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color={theme.palette.mode === 'light' ? '#FFFFF0' : 'text.secondary'}>
                 Already have an account?{' '}
               </Typography>
               <Link
@@ -290,7 +321,7 @@ const SignUp: React.FC = () => {
                   ml: 1,
                   fontWeight: 600,
                   textDecoration: 'none',
-                  color: theme.palette.mode === 'light' ? '#000000' : 'primary.main',
+                  color: theme.palette.mode === 'light' ? '#FFFFF0' : 'primary.main',
                   '&:hover': {
                     textDecoration: 'underline',
                   },

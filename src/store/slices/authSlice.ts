@@ -14,24 +14,27 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     register: (state, action: PayloadAction<User>) => {
-      // Get existing users or initialize empty array
       const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
       
-      // Check if email already exists
       const emailExists = existingUsers.some((user: User) => user.email === action.payload.email);
       if (emailExists) {
         state.error = 'Email already registered';
         return;
       }
 
-      // Add new user to array
-      existingUsers.push(action.payload);
+      const newUser = {
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+        email: action.payload.email,
+        password: action.payload.password,
+      };
+
+      existingUsers.push(newUser);
       localStorage.setItem('users', JSON.stringify(existingUsers));
       
-      // Store current user
-      localStorage.setItem('currentUser', JSON.stringify(action.payload));
+      localStorage.setItem('currentUser', JSON.stringify(newUser));
       
-      state.user = action.payload;
+      state.user = newUser;
       state.isAuthenticated = true;
       state.error = null;
     },

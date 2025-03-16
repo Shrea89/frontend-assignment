@@ -142,7 +142,7 @@ const App: React.FC = () => {
                 textDecoration: 'none',
               }}
             >
-              E-Commerce Store
+              Bazaar
             </Typography>
             <IconButton 
               sx={{ 

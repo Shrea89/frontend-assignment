@@ -28,12 +28,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { fetchProducts, fetchCategories } from '../../store/slices/productsSlice';
 import { addToCart } from '../../store/slices/cartSlice';
-import { RootState } from '../../store';
+import { RootState, AppDispatch } from '../../store';
 import type { Product } from '../../types';
+import backgroundImage from '../../assets/shop4.png';
 
 const ProductList: React.FC = () => {
   const theme = useTheme();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { items: products, loading, categories } = useSelector((state: RootState) => state.products);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -70,17 +71,16 @@ const ProductList: React.FC = () => {
 
   return (
     <Box>
-      {/* Hero Section */}
       <Paper
         sx={{
           position: 'relative',
           backgroundColor: 'grey.800',
           color: '#fff',
           mb: 4,
-          backgroundSize: 'cover',
+          backgroundSize: '100%',
           backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          backgroundImage: 'url(https://source.unsplash.com/random?shopping)',
+          backgroundPosition: 'center 95%',
+          backgroundImage: `url(${backgroundImage})`,
           minHeight: '400px',
         }}
       >
@@ -104,7 +104,7 @@ const ProductList: React.FC = () => {
               }}
             >
               <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                Welcome to Our Store
+                Welcome to Bazaar
               </Typography>
               <Typography variant="h5" color="inherit" paragraph>
                 Discover amazing products at great prices
@@ -115,7 +115,6 @@ const ProductList: React.FC = () => {
       </Paper>
 
       <Container>
-        {/* Search and Filter Section */}
         <Grid container spacing={3} sx={{ mb: 4 }}>
           <Grid item xs={12} md={8}>
             <Paper
@@ -154,7 +153,6 @@ const ProductList: React.FC = () => {
           </Grid>
         </Grid>
 
-        {/* Products Grid */}
         <Typography variant="h4" gutterBottom sx={{ mb: 4 }}>
           {selectedCategory === 'all' ? 'All Products' : selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
         </Typography>
@@ -234,7 +232,6 @@ const ProductList: React.FC = () => {
           ))}
         </Grid>
 
-        {/* Empty State */}
         {filteredProducts.length === 0 && (
           <Box sx={{ textAlign: 'center', py: 8 }}>
             <Typography variant="h5" color="text.secondary" gutterBottom>

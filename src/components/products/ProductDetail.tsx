@@ -12,17 +12,19 @@ import {
   Rating,
   CircularProgress,
   Paper,
+  Alert,
 } from '@mui/material';
 import { fetchProductById } from '../../store/slices/productsSlice';
 import { addToCart } from '../../store/slices/cartSlice';
-import { RootState } from '../../store';
+import { RootState, AppDispatch } from '../../store';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const product = useSelector((state: RootState) => state.products.selectedProduct);
   const loading = useSelector((state: RootState) => state.products.loading);
+  const error = useSelector((state: RootState) => state.products.error);
 
   useEffect(() => {
     if (id) {
@@ -30,11 +32,54 @@ const ProductDetail: React.FC = () => {
     }
   }, [dispatch, id]);
 
-  if (loading || !product) {
+  if (loading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-        <CircularProgress />
-      </Box>
+      <Container sx={{ mt: 4 }}>
+        <Button
+          variant="outlined"
+          onClick={() => navigate('/products')}
+          sx={{ mb: 4 }}
+        >
+          Back to Products
+        </Button>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+          <CircularProgress />
+        </Box>
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container sx={{ mt: 4 }}>
+        <Button
+          variant="outlined"
+          onClick={() => navigate('/products')}
+          sx={{ mb: 4 }}
+        >
+          Back to Products
+        </Button>
+        <Alert severity="error" sx={{ mt: 2 }}>
+          {error}
+        </Alert>
+      </Container>
+    );
+  }
+
+  if (!product) {
+    return (
+      <Container sx={{ mt: 4 }}>
+        <Button
+          variant="outlined"
+          onClick={() => navigate('/products')}
+          sx={{ mb: 4 }}
+        >
+          Back to Products
+        </Button>
+        <Alert severity="warning" sx={{ mt: 2 }}>
+          Product not found
+        </Alert>
+      </Container>
     );
   }
 
@@ -90,7 +135,9 @@ const ProductDetail: React.FC = () => {
             <Button
               variant="contained"
               size="large"
-              onClick={() => dispatch(addToCart(product))}
+              onClick={() => {
+                dispatch(addToCart(product));
+              }}
               sx={{ mt: 2 }}
             >
               Add to Cart
