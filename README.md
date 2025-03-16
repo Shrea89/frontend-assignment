@@ -44,6 +44,8 @@ A modern, responsive e-commerce frontend application built with React, TypeScrip
 - **Yup** - Form validation
 - **Vite** - Build tool and development server
 
+##Demo (Images of the Website)
+
 ## Getting Started
 
 ### Prerequisites
